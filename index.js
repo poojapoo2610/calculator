@@ -1,20 +1,11 @@
 const digitBtns = document.querySelectorAll('.digit');
 const operatorBtns = document.querySelectorAll('.operator');
-const leftOperand = document.querySelector('.left-operand');
-const midOperator = document.querySelector('.mid-operator');
-const rightOperand = document.querySelector('.right-operand');
+const op1 = document.querySelector('.op1');
+const operator = document.querySelector('.mathOperator');
+const op2 = document.querySelector('.op2');
 const answer = document.querySelector('.answer');
 const equals = document.querySelector('.equal');
-const clearBtn = document.querySelector('.clear');
-const decimal = document.querySelector('.decimal');
-const backspaceBtn = document.querySelector('.backspace');
 const clearEntryBtn = document.querySelector('.clear-entry');
-const percentBtn = document.querySelector('.percent');
-const reciprocalBtn = document.querySelector('.reciprocal');
-const squareBtn = document.querySelector('.square');
-const sqrtBtn = document.querySelector('.sqrt');
-const plusMinusBtn = document.querySelector('.plus-minus');
-
 
 // OPERATOR FUNCTIONS
 function add(a, b) { // Function for + operator (Callback)
@@ -38,31 +29,28 @@ function operate(a, b, math) { // Will operate on expression (Callback)
     return math(a, b);
 }
 
-function runExpression() { // Function for = operator
-    if (leftOperand.innerText && midOperator.innerText && rightOperand.innerText) {
-        switch (midOperator.innerText) {
+function runExpression() { 
+    // console.log(typeof(op1.innerText))
+    if (op1.innerText && operator.innerText && op2.innerText) {
+        switch (operator.innerText) {
             case '+': {
-                let result = operate(parseFloat(leftOperand.innerText),
-                    parseFloat(rightOperand.innerText), add);
-                answer.innerText = roundDecimal(result);
+                let result = operate(parseInt(op1.innerText), parseInt(op2.innerText), add);
+                answer.innerText = result
                 break;
             }
             case '-': {
-                let result = operate(parseFloat(leftOperand.innerText),
-                    parseFloat(rightOperand.innerText), subtract);
-                answer.innerText = roundDecimal(result);
+                let result = operate(parseInt(op1.innerText), parseInt(op2.innerText), subtract);
+                answer.innerText = result
                 break;
             }
             case '*': {
-                let result = operate(parseFloat(leftOperand.innerText),
-                    parseFloat(rightOperand.innerText), multiply);
-                answer.innerText = roundDecimal(result);
+                let result = operate(parseInt(op1.innerText), parseInt(op2.innerText), multiply);
+                answer.innerText = result
                 break;
             }
             case '/': {
-                let result = operate(parseFloat(leftOperand.innerText),
-                    parseFloat(rightOperand.innerText), divide);
-                answer.innerText = roundDecimal(result);
+                let result = operate(parseInt(op1.innerText), parseInt(op2.innerText), divide);
+                answer.innerText = result
                 break;
             }
         }
@@ -70,212 +58,46 @@ function runExpression() { // Function for = operator
 }
 
 // INPUT FUNCTIONS
-function inputDigit() { // Inputs digit using button (Callback)
+function inputDigit() {
     if (answer.innerText) {
         clearDisplay();
-        leftOperand.innerText += this.innerText;
-    } else if (!midOperator.innerText) {
-        leftOperand.innerText += this.innerText;
+        op1.innerText += this.innerText;
+    } else if (!operator.innerText) {
+        op1.innerText += this.innerText;
     } else {
-        rightOperand.innerText += this.innerText;
+        op2.innerText += this.innerText;
     }
 }
 
-function inputDigitKey(e) { // Inputs digit using key (Callback)
-    if (answer.innerText) {
-        clearDisplay();
-        leftOperand.innerText += parseFloat(e.key);
-    } else if (!midOperator.innerText) {
-        leftOperand.innerText += parseFloat(e.key);
-    } else {
-        rightOperand.innerText += parseFloat(e.key);
-    }
-}
 
-function inputOperator() { // Inputs operator using button (Callback)
+function inputOperator() {
     if (answer.innerText) {
         let newAnswer = answer.innerText
         clearDisplay();
-        leftOperand.innerText = newAnswer;
-        midOperator.innerText += this.innerText;
-    } else if (!midOperator.innerText) {
-        midOperator.innerText += this.innerText;
-    } else if (midOperator.innerText && rightOperand.innerText) {
+        op1.innerText = newAnswer;
+        operator.innerText += this.innerText;
+    } else if (!operator.innerText) {
+        operator.innerText += this.innerText;
+    } else if (operator.innerText && op2.innerText) {
         runExpression();
-        leftOperand.innerText = answer.innerText;
+        op1.innerText = answer.innerText;
         answer.innerText = '';
-        midOperator.innerText += this.innerText;
-    }
-}
-
-function inputOperatorKey(e) { // Inputs operator using key (Callback)
-    if (answer.innerText) {
-        let newAnswer = answer.innerText
-        clearDisplay();
-        leftOperand.innerText = newAnswer;
-        midOperator.innerText += e.key;
-    } else if (!midOperator.innerText) {
-        midOperator.innerText += e.key;
-    } else if (midOperator.innerText && rightOperand.innerText) {
-        runExpression();
-        leftOperand.innerText = answer.innerText;
-        answer.innerText = '';
-        midOperator.innerText += e.key;
-    }
-}
-
-function inputDecimal() { // Input decimal using button (Callback)
-    if (!midOperator.innerText) {
-        if (leftOperand.innerText.includes('.')) return;
-        leftOperand.innerText += this.innerText;
-    } else {
-        if (rightOperand.innerText.includes('.')) return;
-        rightOperand.innerText += this.innerText;
-    }
-}
-
-function inputDecimalKey(e) { // Input decimal using key (Callback)
-    if (!midOperator.innerText) {
-        if (leftOperand.innerText.includes('.')) return;
-        leftOperand.innerText += e.key;
-    } else {
-        if (rightOperand.innerText.includes('.')) return;
-        rightOperand.innerText += e.key;
-    }
-}
-
-function onKeyDown(e) { // Decides which function to run based on which key was pressed
-    if (e.key === '0' || e.key === '1' || e.key === '2' || e.key === '3' ||
-        e.key === '4' || e.key === '5' || e.key === '6' || e.key === '7' ||
-        e.key === '8' || e.key === '9') {
-        inputDigitKey(e);
-    } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
-        inputOperatorKey(e);
-    } else if (e.key === '.') {
-        inputDecimalKey(e);
-    } else if (e.key === '%') {
-        percent();
-    } else if (e.key === 'Backspace') {
-        backspace();
-    } else if (e.key === 'Enter' || e.key === '=') {
-        runExpression();
-    }
-}
-
-
-// OTHER OPERATOR FUNCTIONS
-function percent() { // Turns number into a percent decimal form
-    if (!midOperator.innerText) {
-        leftOperand.innerText = leftOperand.innerText / 100;
-    } else {
-        rightOperand.innerText = rightOperand.innerText / 100;
-    }
-}
-
-function reciprocal() { // Gives you the reciprocal value of a number
-    if (!midOperator.innerText) {
-        leftOperand.innerText = 1 / leftOperand.innerText;
-    } else {
-        rightOperand.innerText = 1 / rightOperand.innerText;
-    }
-}
-
-function square() { // Outputs the squared value of an input
-    if (!midOperator.innerText) {
-        leftOperand.innerText = leftOperand.innerText ** 2;
-    } else {
-        rightOperand.innerText = rightOperand.innerText ** 2;
-    }
-}
-
-function sqrt() { // Outputs the square root value of an input
-    if (!midOperator.innerText) {
-        leftOperand.innerText = Math.sqrt(leftOperand.innerText);
-    } else {
-        rightOperand.innerText = Math.sqrt(rightOperand.innerText);
-    }
-}
-
-function plusMinus() { // Turns a positive integer negative and vice versa
-    if (answer.innerText) {
-        leftOperand.innerText = answer.innerText;
-        answer.innerText = '';
-        if (leftOperand.innerText < 0) {
-            leftOperand.innerText = Math.abs(leftOperand.innerText);
-        } else {
-            leftOperand.innerText = -Math.abs(leftOperand.innerText);
-        }
-    } else if (!midOperator.innerText) {
-        if (leftOperand.innerText < 0) {
-            leftOperand.innerText = Math.abs(leftOperand.innerText);
-        } else {
-            leftOperand.innerText = -Math.abs(leftOperand.innerText);
-        }
-    } else {
-        if (rightOperand.innerText < 0) {
-            rightOperand.innerText = Math.abs(rightOperand.innerText);
-        } else {
-            rightOperand.innerText = -Math.abs(rightOperand.innerText);
-        }
+        operator.innerText = this.innerText;
+        op2.innerText = '';
     }
 }
 
 
 // CALCULATOR DISPLAY FUNCTIONS
 function clearDisplay() { // Clears display of all text
-    leftOperand.innerText = '';
-    midOperator.innerText = '';
-    rightOperand.innerText = '';
+    op1.innerText = '';
+    operator.innerText = '';
+    op2.innerText = '';
     answer.innerText = '';
 }
-
-function clearEntry() { // Clear the latest entry on the display
-    if (answer.innerText) {
-        clearDisplay();
-    } else if (!midOperator.innerText) {
-        leftOperand.innerText = '';
-    } else {
-        rightOperand.innerText = '';
-    }
-}
-
-function backspace() { // Delete latest character entered
-    if (!midOperator.innerText) {
-        leftOperand.innerText = leftOperand.innerText.slice(0, -1);
-    } else {
-        rightOperand.innerText = rightOperand.innerText.slice(0, -1);
-    }
-}
-
-
-// SIDE FUNCTIONS
-function decimalCount(num) { // Counts the amount of decimals in a number
-    const numStr = String(num);
-    if (numStr.includes('.')) {
-        return numStr.split('.')[1].length;
-    }
-    return 0;
-}
-
-function roundDecimal(num) { // Will round decimals if more than 5 decimal places
-    if (decimalCount(num) > 5) {
-        return num.toFixed(5);
-    }
-    return num;
-}
-
 
 // EVENT LISTENERS
 digitBtns.forEach(button => button.addEventListener('click', inputDigit))
 operatorBtns.forEach(button => button.addEventListener('click', inputOperator))
 equals.addEventListener('click', runExpression);
-clearBtn.addEventListener('click', clearDisplay);
-clearEntryBtn.addEventListener('click', clearEntry);
-decimal.addEventListener('click', inputDecimal);
-backspaceBtn.addEventListener('click', backspace);
-percentBtn.addEventListener('click', percent);
-reciprocalBtn.addEventListener('click', reciprocal);
-squareBtn.addEventListener('click', square);
-sqrtBtn.addEventListener('click', sqrt);
-plusMinusBtn.addEventListener('click', plusMinus);
-window.addEventListener('keydown', onKeyDown);
+clearEntryBtn.addEventListener('click', clearDisplay);

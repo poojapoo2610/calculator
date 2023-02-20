@@ -12,71 +12,35 @@
     <div class="calculator">
         <div class="display">
             <div class="expression">
-                <span class="left-operand"></span>
-                <span class="mid-operator"></span>
-                <span class="right-operand"></span>
+                <span class="op1"></span>
+                <span class="mathOperator"></span>
+                <span class="op2"></span>
             </div>
             <div class="answer"></div>
         </div>
         <div class="buttons">
             <div class="row1">
-                <button class="percent"><svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                        viewBox="0 0 16 16" fill="currentColor" class="bi bi-percent">
-                        <path
-                            d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                    </svg></button>
-                <button class="clear-entry">CE</button>
-                <button class="clear">C</button>
-                <button class="backspace"><svg xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
-                        version="1.1">
-                        <title>ic_fluent_backspace_24_regular</title>
-                        <desc>Created with Sketch.</desc>
-                        <g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="ic_fluent_backspace_24_regular" fill="#212121" fill-rule="nonzero">
-                                <path
-                                    d="M18.75,4 C20.4830315,4 21.8992459,5.35645477 21.9948552,7.06557609 L22,7.25 L22,16.75 C22,18.4830315 20.6435452,19.8992459 18.9344239,19.9948552 L18.75,20 L10.2488122,20 C9.48467584,20 8.74731983,19.7308489 8.16441163,19.243553 L8.00936186,19.1052839 L3.01367221,14.3552839 C1.71288481,13.1184697 1.66102433,11.0613371 2.89783857,9.76054971 L3.01367221,9.64471607 L8.00936186,4.89471607 C8.56313355,4.36817906 9.28295917,4.05514987 10.0411712,4.00663485 L10.2488122,4 L18.75,4 Z M18.75,5.5 L10.2488122,5.5 C9.85605678,5.5 9.47644043,5.63205173 9.16975262,5.87226779 L9.04295431,5.98177019 L4.04726465,10.7317702 L3.98489269,10.7941421 C3.3580909,11.4533647 3.34595643,12.473346 3.93064574,13.1462921 L4.04726465,13.2682298 L9.04295431,18.0182298 C9.32758521,18.2888625 9.69368599,18.4547433 10.0814672,18.4919848 L10.2488122,18.5 L18.75,18.5 C19.6681734,18.5 20.4211923,17.7928897 20.4941988,16.8935272 L20.5,16.75 L20.5,7.25 C20.5,6.3318266 19.7928897,5.57880766 18.8935272,5.5058012 L18.75,5.5 Z M11.4462117,8.39705176 L11.5303301,8.46966991 L14.000116,10.939 L16.4696699,8.46966991 C16.7625631,8.1767767 17.2374369,8.1767767 17.5303301,8.46966991 C17.7965966,8.73593648 17.8208027,9.15260016 17.6029482,9.44621165 L17.5303301,9.53033009 L15.061116,12 L17.5303301,14.4696699 C17.8232233,14.7625631 17.8232233,15.2374369 17.5303301,15.5303301 C17.2640635,15.7965966 16.8473998,15.8208027 16.5537883,15.6029482 L16.4696699,15.5303301 L14.000116,13.061 L11.5303301,15.5303301 C11.2374369,15.8232233 10.7625631,15.8232233 10.4696699,15.5303301 C10.2034034,15.2640635 10.1791973,14.8473998 10.3970518,14.5537883 L10.4696699,14.4696699 L12.939116,12 L10.4696699,9.53033009 C10.1767767,9.23743687 10.1767767,8.76256313 10.4696699,8.46966991 C10.7359365,8.20340335 11.1526002,8.1791973 11.4462117,8.39705176 Z"
-                                    id="🎨-Color" />
-                            </g>
-                        </g>
-                    </svg></button>
-            </div>
-            <div class="row2">
-                <button class="reciprocal"><sup>1</sup>&frasl;<sub>x</sub></button>
-                <button class="square">x<sup>2</sup><sub></sub></button>
-                <button class="sqrt"><svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
-                        viewBox="0 0 32 32">
-                        <path
-                            d="M 19.3125 6 L 19.0625 6.65625 L 12.90625 22.71875 L 9.90625 16.5625 L 9.625 16 L 6 16 L 6 18 L 8.375 18 L 12 25.4375 L 12.28125 26 L 13.78125 26 L 14.03125 25.34375 L 20.6875 8 L 26 8 L 26 6 Z" />
-                    </svg></button>
-                <button class="operator">/</button>
-            </div>
-            <div class="row3">
                 <button class="digit">7</button>
                 <button class="digit">8</button>
                 <button class="digit">9</button>
                 <button class="operator">*</button>
             </div>
-            <div class="row4">
+            <div class="row2">
                 <button class="digit">4</button>
                 <button class="digit">5</button>
                 <button class="digit">6</button>
                 <button class="operator">-</button>
             </div>
-            <div class="row5">
+            <div class="row3">
                 <button class="digit">1</button>
                 <button class="digit">2</button>
                 <button class="digit">3</button>
                 <button class="operator">+</button>
             </div>
-            <div class="row6">
-                <button class="plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="256px" height="256px"
-                        viewBox="0 0 256 256" id="Flat">
-                        <path
-                            d="M205.65674,61.65674l-144,144a7.99984,7.99984,0,0,1-11.31348-11.31348l144-144a7.99984,7.99984,0,0,1,11.31348,11.31348ZM64,112a8,8,0,0,0,16,0V80h32a8,8,0,0,0,0-16H80V32a8,8,0,0,0-16,0V64H32a8,8,0,0,0,0,16H64Zm160,64H144a8,8,0,0,0,0,16h80a8,8,0,0,0,0-16Z" />
-                    </svg></button>
+            <div class="row4">
+                <button class="operator">/</button>
                 <button class="digit">0</button>
-                <button class="decimal">.</button>
+                <button class="clear-entry">CE</button>
                 <button class="equal">=</button>
             </div>
         </div>

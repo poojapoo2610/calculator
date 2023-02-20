@@ -1,20 +1,21 @@
 body {
     height: 100vh;
-    background-color: rgb(44, 44, 61);
+    /* background-color: rgb(44, 44, 61); */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .calculator {
-    background-color: black;
+    /* background-color: black; */
+    border: solid 1px black;
     padding: 20px;
     border-radius: 10px;
 }
 
 .digit {
-    background-color: rgb(43, 42, 42);
-    color: white;
+    /* background-color: rgb(43, 42, 42); */
+    color: black;
 }
 
 .equal {
@@ -29,20 +30,20 @@ button {
     background-color: lightgray;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    border: none;
-    cursor: pointer;
+    border: block;
+    /* cursor: pointer; */
 }
 
-.row6 button {
+.row4 button {
     margin-bottom: 0px;
 }
 
 .display {
-    height: 150px;
+    height: 100px;
     width: 420px;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(109, 109, 109);
+    background-color: rgb(213, 207, 207);
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -73,9 +74,7 @@ svg {
 .row1,
 .row2,
 .row3,
-.row4,
-.row5,
-.row6 {
+.row4 {
     display: flex;
     justify-content: space-between;
     gap: 7px;
